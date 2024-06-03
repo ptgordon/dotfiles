@@ -12,7 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{"rafi/awesome-vim-colorschemes"}
+	{"rafi/awesome-vim-colorschemes"},
+    {"williamboman/mason.nvim"},
+    {"williamboman/mason-lspconfig.nvim"},
+    {"neovim/nvim-lspconfig"},
 })
 
 vim.o.number = true         -- Enable line numbers
@@ -28,5 +31,14 @@ vim.cmd.colorscheme('gruvbox')  -- Set colorscheme
 -- Syntax highlighting and filetype plugins
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    },
+})
 
 
