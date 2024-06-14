@@ -15,7 +15,24 @@ require("lazy").setup({
 	{"rafi/awesome-vim-colorschemes"},
     {"williamboman/mason.nvim"},
     {"williamboman/mason-lspconfig.nvim"},
-    {"neovim/nvim-lspconfig"},
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        dependencies = {
+            {"ms-jpq/coq_nvim", branch = "coq"},
+
+            {"ms-jpq/coq.artifacts", branch = "artifacts"},
+
+            {"ms-jpq/coq.thirdparty", branch = "3p"}
+        },
+        init = function()
+            vim.g.coq_settings = {
+                auto_start = true,
+            }
+        end,
+        config = function()
+        end,
+    }
 })
 
 vim.o.number = true         -- Enable line numbers
@@ -27,6 +44,7 @@ vim.o.wrap = false          -- Disable line wrapping
 vim.o.cursorline = true     -- Highlight the current line
 vim.o.termguicolors = true  -- Enable 24-bit RGB colors
 vim.cmd.colorscheme('gruvbox')  -- Set colorscheme
+
 
 -- Syntax highlighting and filetype plugins
 vim.cmd('syntax enable')
