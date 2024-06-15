@@ -77,24 +77,6 @@ require('mason-lspconfig').setup{
     },
 }
 
-local git_blame = require('gitblame')
--- vim.g.gitblame_display_virtual_text = 0
-
-local lualine = require('lualine')
-lualine.setup {
-    sections = {
-        lualine_c = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } }
-    }
-}
-
-local navic = require("nvim-navic")
-
-require("lspconfig").clangd.setup {
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
-}
-
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {
   settings = {
@@ -122,3 +104,29 @@ lspconfig.lua_ls.setup {
     },
   },
 }
+
+local navic = require("nvim-navic")
+navic.setup = {
+    lsp = {
+        auto_attach = true,
+    },
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+    safe_output = true,
+    lazy_update_context = false,
+    click = false,
+    format_text = function(text)
+        return text
+    end,
+}
+
+local lualine = require('lualine')
+lualine.setup {
+    sections = {
+        lualine_c = { { navic.get_location, cond = navic.is_available } }
+    }
+}
+
+
