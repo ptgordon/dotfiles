@@ -17,6 +17,7 @@ require("lazy").setup({
     {"williamboman/mason.nvim"},
     {"williamboman/mason-lspconfig.nvim"},
     {"f-person/git-blame.nvim"},
+    {"SmiteshP/nvim-navic"},
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {'nvim-tree/nvim-web-devicons'},
@@ -77,13 +78,21 @@ require('mason-lspconfig').setup{
 }
 
 local git_blame = require('gitblame')
-vim.g.gitblame_display_virtual_text = 0
+-- vim.g.gitblame_display_virtual_text = 0
 
 local lualine = require('lualine')
 lualine.setup {
     sections = {
         lualine_c = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } }
     }
+}
+
+local navic = require("nvim-navic")
+
+require("lspconfig").clangd.setup {
+    on_attach = function(client, bufnr)
+        navic.attach(client, bufnr)
+    end
 }
 
 local lspconfig = require('lspconfig')
