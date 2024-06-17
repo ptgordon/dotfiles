@@ -125,7 +125,7 @@ navic.setup = {
 local lualine = require('lualine')
 lualine.setup {
     sections = {
-        lualine_c = { { navic.get_location, cond = navic.is_available } }
+        lualine_c = { { 'filename', path = 2 } }
     }
 }
 
