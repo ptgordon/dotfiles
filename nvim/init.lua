@@ -18,6 +18,7 @@ require("lazy").setup({
     {"williamboman/mason-lspconfig.nvim"},
     {"f-person/git-blame.nvim"},
     {"SmiteshP/nvim-navic"},
+    {"lamdalisue/vim-suda"},
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {'nvim-tree/nvim-web-devicons'},
@@ -103,6 +104,14 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+lspconfig.matlab_ls.setup {
+    settings = {
+        matlab = {
+            installPath = {"/usr/local/MATLAB/R2024a"}
+        }
+    }
 }
 
 local navic = require("nvim-navic")
