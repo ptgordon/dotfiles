@@ -18,7 +18,8 @@ require("lazy").setup({
     {"williamboman/mason-lspconfig.nvim"},
     {"f-person/git-blame.nvim"},
     {"SmiteshP/nvim-navic"},
-    {"lamdalisue/vim-suda"},
+    {"lambdalisue/vim-suda"},
+    {"nvim-treesitter/nvim-treesitter"},
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {'nvim-tree/nvim-web-devicons'},
