@@ -56,6 +56,7 @@ vim.o.smartindent = true    -- Automatically indent new lines
 vim.o.wrap = false          -- Disable line wrapping
 vim.o.cursorline = true     -- Highlight the current line
 vim.o.termguicolors = true  -- Enable 24-bit RGB colors
+vim.o.colorcolumn = "80"    -- Highlight line 80
 vim.cmd.colorscheme('gruvbox')  -- Set colorscheme
 
 
