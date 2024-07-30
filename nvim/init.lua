@@ -20,6 +20,7 @@ require("lazy").setup({
     {"SmiteshP/nvim-navic"},
     {"lambdalisue/vim-suda"},
     {"nvim-treesitter/nvim-treesitter"},
+    {"nvim-tree/nvim-tree.lua"},
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {'nvim-tree/nvim-web-devicons'},
@@ -48,6 +49,32 @@ require("lazy").setup({
     },
 })
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 vim.o.number = true         -- Enable line numbers
 vim.o.tabstop = 4           -- Number of spaces a tab represents
 vim.o.shiftwidth = 4        -- Number of spaces for each indentation
@@ -62,9 +89,11 @@ vim.cmd.colorscheme('gruvbox')  -- Set colorscheme
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', function() builtin.find_files({no_ignore = true}) end, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fg', function() builtin.live_grep({no_ignore = true}) end, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+vim.api.nvim_set_keymap('t', '<Leader><ESC>', '<C-\\><C-n>', {noremap = true})
 
 
 -- Syntax highlighting and filetype plugins
