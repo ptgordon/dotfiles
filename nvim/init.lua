@@ -44,8 +44,12 @@ require("lazy").setup({
         end,
     },
     {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {'nvim-lua/plenary.nvim'}
+        "ibhagwan/fzf-lua",
+        dependencies = {"nvim-tree/nvim-web-devicons"},
+        config = function()
+            -- calling 'setup' is optional for customization
+            require("fzf-lua").setup({})
+        end
     },
 })
 
@@ -86,12 +90,6 @@ vim.o.termguicolors = true  -- Enable 24-bit RGB colors
 vim.o.colorcolumn = "80"    -- Highlight line 80
 vim.cmd.colorscheme('gruvbox')  -- Set colorscheme
 
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({no_ignore = true}) end, {})
-vim.keymap.set('n', '<leader>fg', function() builtin.live_grep({no_ignore = true}) end, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.api.nvim_set_keymap('t', '<Leader><ESC>', '<C-\\><C-n>', {noremap = true})
 
