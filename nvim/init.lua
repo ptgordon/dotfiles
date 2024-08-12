@@ -53,6 +53,19 @@ require("lazy").setup({
     },
 })
 
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>ff", function() require('fzf-lua').files({no_ignore=true}) end, { desc = "Fzf Files" })
+vim.keymap.set("n", "<leader>fg", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
+vim.keymap.set("n", "<leader>fr", require('fzf-lua').lsp_references, { desc = "Fzf References" })
+-- Or, with args
+-- vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ ... }) end, { desc = "Fzf Files" })
+-- local builtin = require('telescope.builtin')
+-- vim.keymap.set('n', '<leader>ff', function() builtin.find_files({no_ignore = true}) end, {})
+-- vim.keymap.set('n', '<leader>fg', function() builtin.live_grep({no_ignore = true}) end, {})
+-- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+-- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
