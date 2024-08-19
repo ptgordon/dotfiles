@@ -21,28 +21,22 @@ require("lazy").setup({
     {"lambdalisue/vim-suda"},
     {"nvim-treesitter/nvim-treesitter"},
     {"nvim-tree/nvim-tree.lua"},
+    {"neovim/nvim-lspconfig"}, -- Required
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {'nvim-tree/nvim-web-devicons'},
     },
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        dependencies = {
-            {"ms-jpq/coq_nvim", branch = "coq"},
+    {'VonHeikemen/lsp-zero.nvim'},
+    -- LSP Support
+    {"hrsh7th/nvim-cmp"}, -- Required
+    {"hrsh7th/cmp-nvim-lsp"}, -- Required
+    {"hrsh7th/cmp-buffer"},
+    {"hrsh7th/cmp-path"},
+    {"saadparwaiz1/cmp_luasnip"},
+    {"hrsh7th/cmp-nvim-lua"},
 
-            {"ms-jpq/coq.artifacts", branch = "artifacts"},
-
-            {"ms-jpq/coq.thirdparty", branch = "3p"}
-        },
-        init = function()
-            vim.g.coq_settings = {
-                auto_start = true,
-            }
-        end,
-        config = function()
-        end,
-    },
+    {"L3MON4D3/LuaSnip"},
+    {"Rafamadriz/friendly-snippets"},
     {
         "ibhagwan/fzf-lua",
         dependencies = {"nvim-tree/nvim-web-devicons"},
@@ -57,6 +51,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ff", function() require('fzf-lua').files({no_ignore=true}) end, { desc = "Fzf Files" })
 vim.keymap.set("n", "<leader>fg", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
 vim.keymap.set("n", "<leader>fr", require('fzf-lua').lsp_references, { desc = "Fzf References" })
+
 
 
 -- disable netrw at the very start of your init.lua
@@ -150,6 +145,15 @@ lspconfig.matlab_ls.setup {
     }
 }
 
+local cmp = require("cmp")
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+
+
+-- local cmp = require("cmp")
+
 local navic = require("nvim-navic")
 navic.setup = {
     lsp = {
@@ -173,5 +177,4 @@ lualine.setup {
         lualine_c = { { 'filename', path = 2 } }
     }
 }
-
 
