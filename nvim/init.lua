@@ -203,9 +203,13 @@ lspconfig.matlab_ls.setup {
 	capabilities = capabilities,
 	settings = {
 		matlab = {
-	    		installPath = {"/usr/local/MATLAB/R2024a"}
+	    	installPath = {"/usr/local/MATLAB/R2024a"}
 		}
 	}
+}
+
+lspconfig.clangd.setup {
+    capabilities = capabilities
 }
 
 local navic = require("nvim-navic")
