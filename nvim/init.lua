@@ -209,8 +209,13 @@ lspconfig.matlab_ls.setup {
 }
 
 lspconfig.clangd.setup {
-    capabilities = capabilities
+    capabilities = capabilities,
 }
+
+lspconfig.lua_ls.setup {
+    capabilities = capabilities,
+}
+
 
 local navic = require("nvim-navic")
 navic.setup = {
