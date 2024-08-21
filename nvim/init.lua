@@ -54,8 +54,6 @@ vim.keymap.set("n", "<leader>ff", function() require('fzf-lua').files({no_ignore
 vim.keymap.set("n", "<leader>fg", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
 vim.keymap.set("n", "<leader>fr", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 
-
-
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -176,7 +174,7 @@ cmp.setup({
         end
     end),
 
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.locally_jumpable(1) then
@@ -186,7 +184,7 @@ cmp.setup({
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ["<Up>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.locally_jumpable(-1) then
