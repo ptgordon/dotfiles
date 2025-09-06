@@ -188,7 +188,7 @@ lspconfig.matlab_ls.setup {
 	capabilities = capabilities,
 	settings = {
 		matlab = {
-	    	installPath = {"/usr/local/MATLAB/R2024a"},
+	    	installPath = {"/usr/local/MATLAB/R2024b"},
 		}
 	}
 }
@@ -230,6 +230,18 @@ lspconfig.lua_ls.setup {
     Lua = {}
   }
 }
+
+-- Auto-wrap LaTeX files at 80 columns with hard line breaks
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.opt_local.textwidth = 80        -- insert newlines after 80 chars
+    vim.opt_local.formatoptions:append("t") -- auto-wrap text as you type
+    vim.opt_local.wrap = true           -- visual wrapping (just in case)
+    vim.opt_local.linebreak = true      -- wrap at word boundaries
+    vim.opt_local.breakindent = true    -- indent wrapped lines
+  end,
+})
 
 local navic = require("nvim-navic")
 navic.setup = {
