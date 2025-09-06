@@ -47,6 +47,7 @@ require("lazy").setup({
             require("fzf-lua").setup({})
         end
     },
+    {'martineausimon/nvim-lilypond-suite'},
 })
 
 vim.g.mapleader = " "
