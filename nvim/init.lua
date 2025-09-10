@@ -242,10 +242,10 @@ lspconfig.lua_ls.setup {
 
 -- Auto-wrap LaTeX files at 80 columns with hard line breaks
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "tex",
+  pattern = {"tex", "txt"},
   callback = function()
-    vim.opt_local.textwidth = 80        -- insert newlines after 80 chars
-    vim.opt_local.formatoptions:append("t") -- auto-wrap text as you type
+    -- vim.opt_local.textwidth = 80        -- insert newlines after 80 chars
+    -- vim.opt_local.formatoptions:append("t") -- auto-wrap text as you type
     vim.opt_local.wrap = true           -- visual wrapping (just in case)
     vim.opt_local.linebreak = true      -- wrap at word boundaries
     vim.opt_local.breakindent = true    -- indent wrapped lines
