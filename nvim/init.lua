@@ -34,6 +34,7 @@ require("lazy").setup({
     {"hrsh7th/cmp-nvim-lsp"}, -- Required
     {"hrsh7th/cmp-buffer"},
     {"hrsh7th/cmp-path"},
+    {"f3fora/cmp-spell"},
     {"saadparwaiz1/cmp_luasnip"},
     {"hrsh7th/cmp-nvim-lua"},
 
@@ -146,6 +147,13 @@ lspconfig.lua_ls.setup {
   },
 }
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "tex", "plaintex", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { "en_us" }
+  end,
+})
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
@@ -162,11 +170,13 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-    }, {
         { name = 'buffer' },
+        { name = 'spell' },
     }),
 
     mapping = {
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
     ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -189,6 +199,19 @@ cmp.setup({
     end, { "i", "s" }),
 
     },
+
+    formatting = {
+        format = function(entry, vim_item)
+            -- add label to show where suggestion comes from
+            vim_item.menu = ({
+                buffer = "[Buffer]",
+                spell = "[Spell]",
+                nvim_lsp = "[LSP]",
+            })[entry.source.name]
+            return vim_item
+        end,
+    },
+
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -208,6 +231,16 @@ lspconfig.clangd.setup {
 
 lspconfig.pyright.setup{
     capabilities = capabilities,
+}
+
+lspconfig.ltex.setup{
+    settings = {
+        ltex = {
+            language = "en-US",
+            additionalRules = { enablePickyRules = true },
+            checkFrequency = "save",
+        },
+    },
 }
 
 lspconfig.lua_ls.setup {
