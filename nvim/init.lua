@@ -135,32 +135,33 @@ require('mason-lspconfig').setup{
 }
 
 local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
-          'require'
+-- lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
+    settings = {
+        Lua = {
+            runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                'vim',
+                'require'
+                },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                enable = false,
+            },
         },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
     },
-  },
-}
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "plaintex", "markdown", "txt" },
@@ -231,24 +232,24 @@ cmp.setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.matlab_ls.setup {
+vim.lsp.config("matlab_ls", {
 	capabilities = capabilities,
 	settings = {
 		matlab = {
 	    	installPath = {"/usr/local/MATLAB/R2024b"},
 		}
 	}
-}
+})
 
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
     capabilities = capabilities,
-}
+})
 
-lspconfig.pyright.setup{
+vim.lsp.config("pyright", {
     capabilities = capabilities,
-}
+})
 
-lspconfig.ltex.setup{
+vim.lsp.config("ltex", {
     settings = {
         ltex = {
             language = "en-US",
@@ -256,9 +257,9 @@ lspconfig.ltex.setup{
             checkFrequency = "save",
         },
     },
-}
+})
 
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
     capabilities = capabilities,
     on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -286,7 +287,7 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {}
   }
-}
+})
 
 -- Auto-wrap LaTeX files at 80 columns with hard line breaks
 vim.api.nvim_create_autocmd("FileType", {
