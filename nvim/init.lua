@@ -261,6 +261,10 @@ vim.lsp.config("matlab_ls", {
 	}
 })
 
+vim.lsp.config("rust-analyzer", {
+    capabilities = capabilities,
+})
+
 vim.lsp.config("clangd", {
     capabilities = capabilities,
 })
