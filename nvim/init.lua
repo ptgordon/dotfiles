@@ -72,6 +72,11 @@ require("lazy").setup({
         vim.g.vimtex_compiler_method = "latexmk"
       end
     },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6',
+        lazy = false,
+    },
 })
 
 vim.g.mapleader = " "
