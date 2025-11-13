@@ -255,6 +255,26 @@ cmp.setup({
 
 })
 
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.config("matlab_ls", {
@@ -264,10 +284,6 @@ vim.lsp.config("matlab_ls", {
 	    	installPath = {"/usr/local/MATLAB/R2024b"},
 		}
 	}
-})
-
-vim.lsp.config("rust-analyzer", {
-    capabilities = capabilities,
 })
 
 vim.lsp.config("clangd", {
