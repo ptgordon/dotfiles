@@ -198,6 +198,7 @@ cmp.setup({
     mapping = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<tab>"] = cmp.mapping.confirm({ select = true }),
 
     ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -255,25 +256,6 @@ cmp.setup({
 
 })
 
-vim.g.rustaceanvim = {
-  -- Plugin configuration
-  tools = {
-  },
-  -- LSP configuration
-  server = {
-    on_attach = function(client, bufnr)
-      -- you can also put keymaps in here
-    end,
-    default_settings = {
-      -- rust-analyzer language server configuration
-      ['rust-analyzer'] = {
-      },
-    },
-  },
-  -- DAP configuration
-  dap = {
-  },
-}
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
