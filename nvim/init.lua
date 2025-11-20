@@ -83,13 +83,11 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ff", function() require('fzf-lua').files({no_ignore=true}) end, { desc = "Fzf Files" })
 vim.keymap.set("n", "<leader>fg", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
 vim.keymap.set("n", "<leader>fr", require('fzf-lua').lsp_references, { desc = "Fzf References" })
+vim.keymap.set("n", "<leader>fe", function() vim.diagnostic.open_float(nil, { focus = false}) end)
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup()
@@ -139,8 +137,6 @@ require('mason-lspconfig').setup{
     },
 }
 
-local lspconfig = require('lspconfig')
--- lspconfig.lua_ls.setup {
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
@@ -289,7 +285,6 @@ vim.lsp.config("ltex", {
 vim.lsp.config("lua_ls", {
     capabilities = capabilities,
     on_init = function(client)
-    local path = client.workspace_folders[1].name
 
     client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
       runtime = {
