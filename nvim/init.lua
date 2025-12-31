@@ -268,8 +268,22 @@ vim.lsp.config("clangd", {
     capabilities = capabilities,
 })
 
+local util = require("lspconfig.util")
+
+local function uv_python_path(root_dir)
+  local venv = util.path.join(root_dir, ".venv", "bin", "python")
+  if vim.fn.executable(venv) == 1 then
+    return venv
+  end
+end
+
 vim.lsp.config("pyright", {
-    capabilities = capabilities,
+    before_init = function(_, config)
+        local python = uv_python_path(config.root_dir)
+        if python then
+            config.settings.python.pythonPath = python
+        end
+    end,
 })
 
 vim.lsp.config("ltex", {
