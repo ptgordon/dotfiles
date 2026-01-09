@@ -286,14 +286,23 @@ vim.lsp.config("pyright", {
     end,
 })
 
-vim.lsp.config("ltex", {
-    settings = {
-        ltex = {
-            language = "en-US",
-            additionalRules = { enablePickyRules = true },
-            checkFrequency = "save",
-        },
+vim.lsp.config("texlab", {
+  settings = {
+    texlab = {
+      build = {
+        onSave = true, -- Auto-compile on save
+        executable = 'latexmk', -- Or 'tectonic'
+        args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+      },
+      forwardSearch = {
+        executable = 'zathura', -- Change to your PDF viewer (e.g., 'Skim' for Mac, 'okular' for Linux)
+        args = { "--synctex-forward", "%l:1:%f", "%p" },
+      },
+      chktex = {
+        onOpenAndSave = true, -- Enable linting
+      },
     },
+  },
 })
 
 vim.lsp.config("lua_ls", {

@@ -1,1 +1,13 @@
-Some(([], []))
+Some(([
+    "com.system76.CosmicPanelLauncherButton",
+    "com.system76.CosmicPanelAppButton",
+    "com.system76.CosmicPanelWorkspacesButton",
+    "com.system76.CosmicAppList",
+    "com.system76.CosmicAppletMinimize",
+], [
+    "io.github.maciekk64.CosmicExtAppletExternalMonitorBrightness",
+    "com.system76.CosmicAppletAudio",
+    "com.system76.CosmicAppletBluetooth",
+    "com.system76.CosmicAppletNetwork",
+    "com.system76.CosmicAppletPower",
+]))

@@ -1,0 +1,10 @@
+(
+    enabled_players: [
+        "Mozilla firefox",
+        "Spotify",
+    ],
+    auto_detect_new_players: true,
+    selected_player: Some("Mozilla firefox"),
+    show_all_players: true,
+    hide_inactive_players: false,
+)
