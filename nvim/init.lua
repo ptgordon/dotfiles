@@ -259,7 +259,7 @@ vim.lsp.config("matlab_ls", {
 	capabilities = capabilities,
 	settings = {
 		matlab = {
-	    	installPath = {"/usr/local/MATLAB/R2024b"},
+	    	installPath = {"/usr/local/MATLAB/R2025b"},
 		}
 	}
 })
