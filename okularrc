@@ -1,0 +1,17 @@
+[Desktop Entry]
+FullScreen=false
+
+[General]
+LockSidebar=true
+ShowSidebar=false
+
+[MainWindow]
+MenuBar=Disabled
+
+[Recent Files]
+File1[$e]=$HOME/Downloads/1-s2.0-S0378775325018890-main.pdf
+File2[$e]=$HOME/Downloads/Fit_Guide.pdf
+File3[$e]=$HOME/Downloads/kivik-cover-for-sofa-gunnared-light-green__AA-2342501-1-100.pdf
+Name1[$e]=1-s2.0-S0378775325018890-main.pdf
+Name2[$e]=Fit_Guide.pdf
+Name3[$e]=kivik-cover-for-sofa-gunnared-light-green__AA-2342501-1-100.pdf
