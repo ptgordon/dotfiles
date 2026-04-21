@@ -4,6 +4,10 @@
       "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
+    "markview.nvim": {
+      "rev": "e27dee8b2a61f89ac3a06deae0264ad1d3f7b62c",
+      "src": "https://github.com/OXY2DEV/markview.nvim"
+    },
     "nvim": {
       "rev": "9d22ec7b126d75274a4525840501bf8da55c75f1",
       "src": "https://github.com/ember-theme/nvim"

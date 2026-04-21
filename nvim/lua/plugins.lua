@@ -6,7 +6,10 @@ vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
     { src = "https://github.com/lervag/vimtex" },
+    { src = "https://github.com/OXY2DEV/markview.nvim" },
 })
+
+require("markview").setup()
 
 require("gruvbox").setup()
 
