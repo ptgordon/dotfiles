@@ -7,7 +7,34 @@ vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/OXY2DEV/markview.nvim" },
+    { src = "https://github.com/mason-org/mason.nvim"  },
 })
+
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+        },
+    },
+    ensure_installed = {
+        "rust-analyzer",
+        "lua-language-server",
+        "texlab",
+        "clangd",
+    },
+})
+
+require("telescope").setup({
+  pickers = {
+    find_files = {
+      no_ignore = true,
+      no_ignore_parent = true,
+    },
+  },
+})
+require("telescope").load_extension("fzf")
 
 require("markview").setup()
 
@@ -26,3 +53,4 @@ require("ember").setup({
   on_colors     = nil, -- function(palette) - modify palette before theme builds
   on_highlights = nil, -- function(highlights, theme) - modify highlight groups
 })
+

@@ -42,6 +42,22 @@ vim.lsp.config('texlab', {
 
 vim.lsp.enable('texlab')
 
+vim.lsp.config('clangd', {
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--completion-style=detailed',
+    '--fallback-style=llvm',
+  },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+  root_markers = { '.clangd', '.clang-format', 'CMakeLists.txt', 'compile_commands.json', '.git' },
+  capabilities = {
+    offsetEncoding = { 'utf-16' },
+  },
+})
+
+vim.lsp.enable('clangd')
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
