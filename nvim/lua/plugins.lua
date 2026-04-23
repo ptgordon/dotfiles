@@ -1,10 +1,10 @@
 vim.pack.add({
     "https://github.com/ember-theme/nvim",
     "https://github.com/ellisonleao/gruvbox.nvim",
-    { src = "http://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/OXY2DEV/markview.nvim" },
     { src = "https://github.com/mason-org/mason.nvim"  },
