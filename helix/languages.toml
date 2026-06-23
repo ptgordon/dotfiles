@@ -10,3 +10,22 @@ args = ["server"]
 name = "python"
 language-servers = ["pyright", "ruff"]
 auto-format = true
+
+[language-server.taplo]
+command = "taplo"
+args = ["lsp", "stdio"]
+
+[[language]]
+name = "toml"
+language-servers = ["taplo"]
+auto-format = true
+soft-wrap.enable = true
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[[language]]
+name = "markdown"
+language-servers = ["harper-ls"]
+soft-wrap.enable = true
