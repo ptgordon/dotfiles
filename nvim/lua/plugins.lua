@@ -8,7 +8,10 @@ vim.pack.add({
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/OXY2DEV/markview.nvim" },
     { src = "https://github.com/mason-org/mason.nvim"  },
+    { src = "https://github.com/echasnovski/mini.pairs" },
 })
+
+require("mini.pairs").setup()
 
 require("mason").setup({
     ui = {
