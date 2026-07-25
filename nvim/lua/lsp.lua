@@ -58,6 +58,25 @@ vim.lsp.config('clangd', {
 
 vim.lsp.enable('clangd')
 
+-- *.m detection is a content heuristic that can land on octave/objc/mma, so pin it.
+vim.g.filetype_m = 'matlab'
+
+vim.lsp.config('matlab_ls', {
+  cmd = { 'matlab-language-server', '--stdio' },
+  filetypes = { 'matlab' },
+  root_markers = { '.git' },
+  settings = {
+    MATLAB = {
+      installPath = '/usr/local/MATLAB/R2026a',
+      matlabConnectionTiming = 'onStart',
+      indexWorkspace = true,
+      telemetry = false,
+    },
+  },
+})
+
+vim.lsp.enable('matlab_ls')
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)

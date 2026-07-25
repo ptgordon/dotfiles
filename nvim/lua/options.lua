@@ -5,7 +5,8 @@ vim.signcolumn = "yes"
 vim.wo.number = true
 vim.opt.termguicolors = true
 vim.opt.complete:append('kspell')
-vim.o.colorcolumn = "100"    -- Highlight line 80
+vim.o.colorcolumn = "100"
+vim.opt.textwidth = 100
 
 vim.cmd.colorscheme("ember-soft")
 -- vim.cmd.colorscheme("gruvbox")

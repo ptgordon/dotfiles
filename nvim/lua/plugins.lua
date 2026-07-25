@@ -23,6 +23,7 @@ require("mason").setup({
         "lua-language-server",
         "texlab",
         "clangd",
+        "matlab-language-server",
     },
 })
 
