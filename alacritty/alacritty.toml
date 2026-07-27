@@ -1,7 +1,3 @@
-[terminal.shell]
-program = "/bin/bash"
-args = ["-lc", "tmux new-session -A -s main"]
-
 [font]
 size = 10.0
 

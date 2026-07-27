@@ -29,3 +29,19 @@ args = ["--stdio"]
 name = "markdown"
 language-servers = ["harper-ls"]
 soft-wrap.enable = true
+
+[language-server.matlab-language-server]
+command = "matlab-language-server"
+args = ["--stdio"]
+
+# Settings must nest under config.MATLAB, not config — a flat block makes the
+# server crash on init when Helix answers the workspace-configuration request.
+[language-server.matlab-language-server.config.MATLAB]
+installPath = "/usr/local/MATLAB/R2026a"
+matlabConnectionTiming = "onStart"
+indexWorkspace = true
+telemetry = false
+
+[[language]]
+name = "matlab"
+language-servers = ["matlab-language-server"]
