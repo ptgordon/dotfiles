@@ -34,6 +34,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Hang the continuation of a wrapped list item under its text instead of at
+-- column 0. markview does this itself, but its version miscounts and leaves
+-- stray padding mid-sentence, so it is turned off there and done here instead
+-- (see lua/plugins.lua). 'list:-1' measures the marker with 'formatlistpat',
+-- which the markdown ftplugin already teaches about -, * and + bullets.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.breakindentopt = "list:-1"
+  end,
+})
+
 -- Keymaps
 
 -- Treat each wrapped screen line as its own line for movement.
