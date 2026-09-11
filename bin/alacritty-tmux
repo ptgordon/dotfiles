@@ -1,0 +1,34 @@
+#!/bin/sh
+# Alacritty's shell: every new Alacritty window gets its own private tmux
+# session, so windows are fully independent -- no shared tabs, no mirrored
+# state between them. tmux is here purely for splits, tabs and copy mode.
+#
+# The session name is derived from this script's PID, which tmux inherits on
+# exec, so it is unique per window. The loop guards against the rare case of a
+# PID being reused while an orphaned session of that name still exists.
+#
+# destroy-unattached is what reaps the session when its window goes away: the
+# option is session-scoped (set-option with no -g lands on the session
+# new-session just created), so closing one window never touches another.
+#
+# Do NOT use a "set-hook client-detached kill-session" here instead. When a
+# session is destroyed, tmux reassigns the client to a surviving session before
+# client-detached is processed, so the hook fires against the WRONG session and
+# exiting one window kills another.
+
+# Nested tmux, or no tmux installed: just be a shell.
+if [ -n "$TMUX" ] || ! command -v tmux >/dev/null 2>&1; then
+    exec fish -l
+fi
+
+SESSION="term-$$"
+n=0
+while tmux has-session -t "=$SESSION" 2>/dev/null; do
+    n=$((n + 1))
+    SESSION="term-$$-$n"
+done
+
+exec tmux new-session -s "$SESSION" \; set-option destroy-unattached on
+
+# Reached only if exec itself failed; don't leave the window without a shell.
+exec fish -l

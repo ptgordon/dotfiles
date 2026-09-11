@@ -19,3 +19,9 @@ style = "Bold Italic"
 
 [general]
 import = ["/usr/lib/node_modules/alacritty-themes/themes/Gruvbox-Dark.toml"]
+
+# Each new Alacritty window gets its own private tmux session, for splits
+# and tabs without any shared state between windows. See bin/alacritty-tmux
+# in the dotfiles repo; this path is a symlink into it.
+[terminal.shell]
+program = "/home/pgordon/.local/bin/alacritty-tmux"
