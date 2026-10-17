@@ -1,5 +1,24 @@
+-- markdown-preview.nvim serves the preview from a bundled node app whose
+-- dependencies have to be installed after every install/update. vim.pack has
+-- no build hook of its own, so do it on PackChanged; this must be registered
+-- before vim.pack.add() for the first install to trigger it.
+--
+-- Built with node rather than mkdp#util#install(): that downloads a ~40MB
+-- prebuilt server and doesn't notice when the download is truncated, leaving a
+-- binary that the plugin prefers over node but that dies on launch, so
+-- :MarkdownPreview silently does nothing.
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function (ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "markdown-preview.nvim" and (kind == "install" or kind == "update") then
+      vim.system({ "npx", "--yes", "yarn", "install" }, { cwd = ev.data.path .. "/app" })
+    end
+  end,
+})
+
 vim.pack.add({
     "https://github.com/ember-theme/nvim",
+    { src = "https://github.com/iamcco/markdown-preview.nvim" },
     "https://github.com/ellisonleao/gruvbox.nvim",
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
